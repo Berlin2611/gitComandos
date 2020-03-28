@@ -1,0 +1,1357 @@
+
+###AGREGAR UN ALIAS
+git config --global user.name "MarioACPGit"
+
+###Correo
+git config --global user.email "macp@gmail.com"
+##Ver la info del usuario
+git config --global -e
+### Salir :q Enter
+
+
+###Creas Un Repositorio local
+git init
+### Ver el estado
+git status
+###Agregar todos los archivos
+git add .
+## Deshacer un git add . completo
+git reset
+###Tomar un Sanpshop del proyecto
+git commit -m "Descripccion del Commit"
+
+
+###Recupearar Un dato alcanenado localmente erronaneamnte
+##Reconstruye en el ultimo commit
+git checkout -- .
+
+
+##Subir un unico archivos
+git add README.md
+###Tomar un Sanpshop del proyecto
+git commit -m "Se Agrega README"
+
+##Ver el LOG 
+git log
+
+##Crear un Nuevo Proyecto
+cd ..
+cd RUTA
+git init
+
+#############COMMIT Independientes
+git add index.html
+git commit -m "Creado Index"
+
+#############COMMIT Independientes Por extencion 
+git add *.png
+git commit -m "Creado .png"
+
+#############COMMIT Independientes Por Carpeta o Ruta 
+git add css/
+git commit -m "Creado css"
+
+#############COMMIT Independientes exluyendo un solo archivo o por extencion 
+git add -A
+git reset *.xml
+git commit -m "Creado archivos js"
+
+##TXT de todo el proyecto
+git add "*.txt" 
+##TXT del directorio actual
+git add *.txt 
+##Todos los arcchivos
+git add --all
+##Lista de archivos
+git add <Lista de archivos>
+##Carpetas agrega todos los archivos de una carpeta con una extencion 
+git add carpeta/*.ext
+##Carpetas agrega todos los archivos de una carpeta
+git add carpeta/
+
+
+##Comandos LOG
+git log --oneline
+git log --oneline --decorate --all --graph
+
+##Git Status
+## Ver solo lo que nos importa
+git status -s
+
+##Ver la rama y el status
+git status -s -b
+
+
+#####Crear ALIAS -----------IMPORTATNTE
+git config --global alias.lg "log --oneline --decorate --all --graph" 
+## Ahora con un lg listamos lo mismo que git log --oneline --decorate --all --graph
+git lg
+##Alias a STATUS
+git config --global alias.s "status -s -b" 
+##Para validar los alias creados
+git config --global -l
+
+##Restauracion 
+##Creamos Proyecto y agregamos cambios
+git init
+git add -A
+git commit -m "Creacion Readme"
+## Validar Cambios
+git diff
+##Si ya se realizo un addd y se quiere validar cambios
+git diff --staged
+## Sacar un cambio del sataged o Restaurar // En archivo README.md
+git reset HEAD README.md
+##Revertir cabios de un solo archivo
+git checkout --  README.md
+
+##Actualizar Mensajes Commit y revertir commits 
+##Realizamos cambios sobre los archivos
+##Nota hacer add y commit al tiempo  
+git commit -am "Se actualiza readme" 
+##Arregr el mensaje de un commit
+git commit --amend -m "VALIDAR UNA ACTUALIZACION DEL MSJ COMMIT"
+#Reset commit
+git reset --soft HEAD^ 
+##Agregamos mas cambios 
+
+
+##Viajes En el tiempo 
+## Para este ejemplo descargamos un proyeco creamos un proyecto nuevo y unicamente le agregamos el reame
+git add -A
+git commit -m "Comentario"
+##Luego agremamos diferentes archivos
+git add -- .
+git commin -m "Agregamson un solo archivo"
+
+##Editamos archivos 
+git commit -am "Editamos Readme"
+git commit -am "Editamos Heroes"
+#################Ej 1
+
+###################################Este ejemplo quedo asi
+
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git lg
+## * 3066b24 (HEAD -> master) Editamos Heroes
+## * b6eb150 Editamos Readme
+## * ba9e9ed Cartepa Histora Commit
+## * 412f4f7 Commit Ciudades
+## * 495c19e Commit Heroes
+## * c1c5ac3 Commit Misiones
+## * 3ead0d8 e agrego el archivo ritmi
+
+
+#########################################################
+
+git reset --soft b6eb150
+git add .
+git commit -am "Editamos Heroes Alejo"
+#########################################################
+git lg
+## * b32db94 (HEAD -> master) Editamos Heroes Alejo
+## * b6eb150 Editamos Readme
+## * ba9e9ed Cartepa Histora Commit
+## * 412f4f7 Commit Ciudades
+## * 495c19e Commit Heroes
+## * c1c5ac3 Commit Misiones
+## * 3ead0d8 e agrego el archivo ritmi
+#########################################################
+
+#######################################
+
+#################Ej 2
+
+git reset --mixed ba9e9ed
+
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git lg
+## * ba9e9ed (HEAD -> master) Cartepa Histora Commit
+## * 412f4f7 Commit Ciudades
+## * 495c19e Commit Heroes
+## * c1c5ac3 Commit Misiones
+## * 3ead0d8 e agrego el archivo ritmi
+
+## Quito el stage por lo cual puedo eliminar los cambios o modificarlos
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git s
+## master
+##  M README.md
+##  M heroes.md
+
+##Ahora si quiere destruir todos los cambios OJOOOOOOOO todos hacia arriba
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git reset --hard ba9e9ed
+##HEAD is now at ba9e9ed Cartepa Histora Commit
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git s
+## master
+##Para el EJ Borramos todas  y lo dejamos asi
+git lg
+##* 3ead0d8 (HEAD -> master) e agrego el archivo ritmi
+
+##Si queremos restaurar los hard
+
+git reflog
+
+##3ead0d8 (HEAD -> master) HEAD@{0}: reset: moving to 3ead0d8
+##c1c5ac3 HEAD@{1}: reset: moving to c1c5ac3
+##ba9e9ed HEAD@{2}: reset: moving to ba9e9ed
+##ba9e9ed HEAD@{3}: reset: moving to ba9e9ed
+##b32db94 HEAD@{4}: commit: Editamos Heroes Alejo
+##b6eb150 HEAD@{5}: reset: moving to b6eb150
+##3066b24 HEAD@{6}: commit: Editamos Heroes
+##b6eb150 HEAD@{7}: commit: Editamos Readme
+##ba9e9ed HEAD@{8}: commit (amend): Cartepa Histora Commit
+##018cab4 HEAD@{9}: commit: Commit Historia Carpeta
+##412f4f7 HEAD@{10}: commit: Commit Ciudades
+##495c19e HEAD@{11}: commit: Commit Heroes
+##c1c5ac3 HEAD@{12}: commit: Commit Misiones
+
+git reset --hard ba9e9ed
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git lg
+##* ba9e9ed (HEAD -> master) Cartepa Histora Commit
+##* 412f4f7 Commit Ciudades
+##* 495c19e Commit Heroes
+##* c1c5ac3 Commit Misiones
+##* 3ead0d8 e agrego el archivo ritmi
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git s
+#### master
+
+##Restauramas ese hard NO PASDO NADA
+###################################################################
+
+
+
+####Renombrar Archivos
+git mv destruir.txt salvar_mundo.txt
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git s
+## master
+##R  destruir.txt -> salvar_mundo.txt
+git commit -m "Renombrando Archivo Salvar Mundo"
+
+####Remover Archivos
+git rm salvar_mundo.txt
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git s
+## master
+## D  salvar_mundo.txt
+git commit -m "Eliminando Archivo Salvar Mundo"
+
+
+##Cambiar Nombre y eliminar archivos Fuera de Git
+##Modificamos un nombre de un archivo y hacemos un Status
+git s
+## master
+## D historia/superman.historia.md
+## ?? historia/superman.md
+
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git add -u
+
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git s
+## master
+## D  historia/superman.historia.md
+## ?? historia/superman.md
+
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git add -A
+
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git s
+## master
+## R  historia/superman.historia.md -> historia/superman.md
+git commit -m "Renombrando de Historia Sup"
+
+
+####Borramos un archivo
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-04 (master)
+git s
+## master
+##  D historia/batman.historia.md
+git add -u
+git commit -m "Eliminamis Batman"
+
+
+##Ignorar Archivos
+#.gitignore
+git s
+## master
+##?? noseguir.txt
+## Creamon un archivo .gitignore
+##Podriamos colocar lo siguinte en el archivo
+## noseguir.txt
+## *.txt
+## carpeta/
+git s
+## master
+## ?? .gitignore
+##Desaparecen los archivos excluidos
+git add -A
+
+
+
+################################MERGE##################################################
+##Cramos Un proyecto y le agregamos un archivo
+
+####CREAR RAMAS
+git branch rama-villanos 
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (master)
+git branch
+##* master
+##  rama-villanos
+##PARA MOVERNOS A LA RAMAS
+git checkout rama-villanos
+##Switched to branch 'rama-villanos'
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (rama-villanos)
+git branch
+##  master
+##* rama-villanos
+git s
+## rama-villanos
+##?? villanos.md
+git add -A
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (rama-villanos)
+git commit -m "Agregando Villanos"
+##[rama-villanos bd74c19] Agregando Villanos
+## 1 file changed, 2 insertions(+)
+## create mode 100644 villanos.md
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (rama-villanos)
+git lg
+##* bd74c19 (HEAD -> rama-villanos) Agregando Villanos
+##* 62c8a10 (master) Agregando el gitignore
+##* ac0d374 Borramos la historia de batman
+##* b4c748c Cambiamos el nombre de la historia de superman
+##* d877f01 Borrando archivo salvar mundo
+##* c9ee153 Renombrando archivo a salvar-mundo
+##* fa3cd3a Creando el archivo destruir el mundo
+####* 4e809d4 Agregamos a Linterna verde y a Robin
+##* 345d7de Editamos el readme.md
+##* 860c6c2 Agregamos las historias de los heroes
+##* bc1a1e5 Agregamos las ciudades
+##* 6b8f60d Agregamos los heroes
+##* da24862 Agregamos las misiones
+##* 88a423d Se agrego el archivo readme
+
+
+##Modificamos un archivo en este caso:
+git s
+## rama-villanos
+##  M villanos.md
+git commit -am "Modificando Villanos agremos a laura"
+
+###############INTEGRAR
+## Vemos las diferencias de las ramas
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (rama-villanos)
+git diff rama-villanos master
+##diff --git a/villanos.md b/villanos.md
+##deleted file mode 100644
+##index 5ea8d78..0000000
+##--- a/villanos.md
+##+++ /dev/null
+##@@ -1,3 +0,0 @@
+##-#Lex Lutor
+##-#Juan Manuel Cortes
+##-#Laura Polania
+
+##Regresamos al MASRER
+
+git checkout master
+
+
+## Merge Fast-forward**********************************************************************
+git merge rama-villanos
+## Updating 62c8a10..df6d3b1
+## Fast-forward
+##  villanos.md | 3 +++
+## 1 file changed, 3 insertions(+)
+##  create mode 100644 villanos.md
+
+## vemos que las ramas master y rama-villanos apuntan  a HEAD
+git lg
+##* df6d3b1 (HEAD -> master, rama-villanos) Modificando Villanos agremos a laura
+## Buenas practica borrar la rama 
+git branch
+##* master
+##  rama-villanos
+git branch -d rama-villanos
+##  Deleted branch rama-villanos (was df6d3b1).
+##  mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (master)
+git branch
+##  * master
+
+
+##Marge Automatico**********************************************************************
+##Creamos la rama y nos movemos a ella 
+git checkout -b rama-villanos
+##Switched to a new branch 'rama-villanos'
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (rama-villanos)
+## Modificamos un archivos
+git s
+## rama-villanos
+##  M villanos.md
+## mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (rama-villanos)
+git commit -am "Agregamos a LALA la mas mala"
+##Nos movemos al master
+git checkout master 
+#Modificamos un archivo de la rama master
+git s
+## master
+## M heroes.md
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (master)
+git commit -am "Me agregue soy heroe"
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-06 (master)
+git lg
+##* ab8fbb1 (HEAD -> master) Me agregue soy heroe
+##| * 2af6563 (rama-villanos) Agregamos a LALA la mas mala
+##|/
+##* df6d3b1 Modificando Villanos agremos a laura
+##* bd74c19 Agregando Villanos
+##* 62c8a10 Agregando el gitignore
+##* ac0d374 Borramos la historia de batman
+##* b4c748c Cambiamos el nombre de la historia de superman
+##* d877f01 Borrando archivo salvar mundo
+##* c9ee153 Renombrando archivo a salvar-mundo
+##* fa3cd3a Creando el archivo destruir el mundo
+##* 4e809d4 Agregamos a Linterna verde y a Robin
+##* 345d7de Editamos el readme.md
+##* 860c6c2 Agregamos las historias de los heroes
+##* bc1a1e5 Agregamos las ciudades
+##* 6b8f60d Agregamos los heroes
+##* da24862 Agregamos las misiones
+##* 88a423d Se agrego el archivo readme
+
+#Marge
+
+git merge rama-villanos
+#Salvamos esc shif : wq
+
+git lg
+#*   312eb84 (HEAD -> master) Merge branch 'rama-villanos'
+#|\
+#| * 2af6563 (rama-villanos) Agregamos a LALA la mas mala
+#* | ab8fbb1 Me agregue soy heroe
+#|/
+#* df6d3b1 Modificando Villanos agremos a laura
+##* bd74c19 Agregando Villanos
+#* 62c8a10 Agregando el gitignore
+#* ac0d374 Borramos la historia de batman
+#* b4c748c Cambiamos el nombre de la historia de superman
+#* d877f01 Borrando archivo salvar mundo
+#* c9ee153 Renombrando archivo a salvar-mundo
+#* fa3cd3a Creando el archivo destruir el mundo
+#* 4e809d4 Agregamos a Linterna verde y a Robin
+
+
+
+## Merge Uniones**********************************************************************
+## Creamos Una nueba Rama
+git checkout -b rama-conflicto
+## En  esta rama modificamos un archivo
+git s
+## rama-conflicto
+## M misiones.md
+git commit -am "Modificamos las misiones"
+#Regresamos al Master
+git checkout master
+## Modificamos el mismo archivo en la rama master y en el mis mugar de la rama conflicto
+git s
+## master
+# M misiones.md
+git commit -am "Modificamos las misiones MASTER"
+
+#AHORA Nos aseguramos de estar en master
+git s
+## master
+git merge rama-conflicto
+##Auto-merging misiones.md
+##CONFLICT (content): Merge conflict in misiones.md
+##Automatic merge failed; fix conflicts and then commit the result.
+
+####### Resolvemos los conflictos manualmente o por ATOM
+git commit -am "Modificamos Y resolvimos el Comflicto"
+
+git lg
+##*   5e5ee10 (HEAD -> master) Modificamos Y resolvimos el Comflicto
+##|\
+##| * 09dc363 (rama-conflicto) Modificamos las misiones
+##* | 6aa63b5 Modificamos las misiones MASTER
+##|/
+
+##Borramso Las ramas
+git branch -d rama-conflicto
+
+
+## TAG Referencia a un commit en el tiempo
+
+#Crear un TAG
+git tag nombretag1.0.0
+git tag
+##nombretag1.0.0
+
+#Para borrar un tag
+git tag -d nombretag1.0.0
+
+git tag -a v01.0.0  -m "Version TAG Iniical"
+
+git lg
+## *   5e5ee10 (HEAD -> master, tag: v0.0.1) Modificamos Y resolvimos el Comflicto
+## C|\
+## | * 09dc363 Modificamos las misiones
+## * | 6aa63b5 Modificamos las misiones MASTER
+## |/
+## *   312eb84 Merge branch 'rama-villanos'
+## |\
+## | * 2af6563 Agregamos a LALA la mas mala
+## * | ab8fbb1 Me agregue soy heroe
+## |/
+## * df6d3b1 Modificando Villanos agremos a laura
+## * bd74c19 Agregando Villanos
+## * 62c8a10 Agregando el gitignore
+## * ac0d374 Borramos la historia de batman
+## * b4c748c Cambiamos el nombre de la historia de superman
+## * d877f01 Borrando archivo salvar mundo
+## * c9ee153 Renombrando archivo a salvar-mundo
+## * fa3cd3a Creando el archivo destruir el mundo
+## * 4e809d4 Agregamos a Linterna verde y a Robin
+## * 345d7de Editamos el readme.md
+## * 860c6c2 Agregamos las historias de los heroes
+## * bc1a1e5 Agregamos las ciudades
+## * 6b8f60d Agregamos los heroes
+## * da24862 Agregamos las misiones
+## * 88a423d Se agrego el archivo readme
+
+#Creamos un tag espesifco a una version anterior 
+git tag -a v0.1.0 da24862 -m "Version TAG Iniical"
+####Ver Info TAGS Anteriores
+git show  v01.0.0 
+## tag v01.0.0
+## Tagger: MarioACPGit <marioacp1981@gmail.com>
+## Date:  13:43:10 2020 -0500
+
+## Version TAG Iniical
+
+## commit 5e5ee1014a067545c52c32145ddc33e20b2d2a85 (HEAD -> master, tag: v01.0.0)
+## Merge: 6aa63b5 09dc363
+## Author: MarioACPGit <marioacp1981@gmail.com>
+## Date:    12:42:48 2020 -0500
+
+##     Modificamos Y resolvimos el Comflicto
+
+## diff --cc misiones.md
+## index ed1907e,0cf4d4c..a307127
+## --- a/misiones.md
+## +++ b/misiones.md
+## @@@ -2,5 -2,5 +2,5 @@@
+
+##   1. Acabar con el plan de Lex Luthor
+##   2. Crear la liga de la justicia
+##  -3. Buscar nuevos miembros
+##  -JODER UNA MISIOn
+##  +3. Buscar nuevos miembros quw aea Yo
+## - YO ME LLAMO CUMBIA
+## ++4. YO ME LLAMO CUMBIA
+
+
+###########################################STASH EJEMPLO 1
+##Contenedor de cambios Temporales se puede utilizar con el master
+##Modificamos un archivo 
+##AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+git s
+## master
+## M misiones.md
+###Ojo No hacmos COMMIT
+git stash
+# Al realizar un status se valida que ya no esta el cambio
+git s
+## master
+
+#Validar el work in progres
+git stash list
+##stash@{0}: WIP on master: 5440fe5 Resolviendo conflictos
+##BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+## Realiamos una modificacion de prueba 
+git s
+## master
+# M README.md
+git commit -am "Modificaciones en el Readme Emergente" 
+##FIN Cambios BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+
+#Si queremos retomar el trabajo realizamos lo sigiiente AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+git stash pop
+
+#On branch master
+#Changes not staged for commit:
+#  (use "git add <file>..." to update what will be committed)
+#  (use "git restore <file>..." to discard changes in working directory)
+#        modified:   misiones.md
+
+#no changes added to commit (use "git add" and/or "git commit -a")
+#Dropped refs/stash@{0} (6441d97d56ff4b27283984e5b1f69d5597de65d0)
+
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-07 (master)
+git stash list
+# ----> No hay cambios en stash
+# Si validamos Retomamos 
+git s
+## master
+# M misiones.md
+git commit -am "Modificaciones AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" 
+
+###########################################STASH EJEMPLO 2
+##Modificamos Un Archivo AAAAAAAAAAAAAAAAAAAAAAAAAAA
+git s
+## master
+# M README.md
+##Guardamos un trabajo emn progreso
+git stash
+## Modifico el archivo nuevamente pero este ya no tiene los cambios anteriores BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+git s
+## master
+## M README.md
+git commit -am "Cambios BBBBBBBBBBBBBBBBBB"
+git s
+## master
+
+
+#Para Volver a BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+git stash pop
+
+##Existen conflctos
+## Resolvemos los comfictos 
+git commit -am "Cambios AAAAAAAAAAAAAAAAAAAAAAAAa"
+git stash list
+#stash@{0}: WIP on master: c6da6c1 Cambios AAAAAAAAAAAAAAAAAAAAAAAAa
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-07 (master)
+git stash drop
+#Dropped refs/stash@{0} (b2d457a24975f3f1df691ed16c78113dc31dc6f9)
+
+##Nota STASH toma archivos y los deja en un area temporal
+#Restarurar un stash Restaura el ultimo
+git stash apply
+#stash Pueden existir MUCHAS si queremos restaurar una sola 1 es el ID stash list
+git stash apply stash@{1}
+## Borrar
+git stash drop stash@{1}
+
+#Guardar Todo menos lo que este en el estage
+git stash save --keep-index
+#Salvar todos los archivos incluso los q no se les da seguimineto
+git stash save --include--untracked
+#Mensajes mas claros~
+git stash save "MENSAGE save stash"
+#Ver detalles stash
+git stash list --stat
+git show stash  
+git show stash@{1}
+
+
+##############Rebase####Rebase###############Rebase##########Rebase
+
+#########Rebase#########Nota###
+##Para este ejercicos se requiete demo-08.zip OJOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+##commit en la rama master
+##rama Misiones Completadas Tenemos dos commits
+##Luego en el master hago dos commits adicionales 
+##Rebase movemos los dos commits rama Misiones Completadas  a uno temporal y mueve el puntero al ultimo commit de la rama master
+
+
+
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-08 (master)
+ git lg
+##* 158ba9e (HEAD -> master) Se agrego a la liga: Volcán Negro
+##* 300c014 Misiones nuevas agregadas
+##| ##* 8e755a3 (rama-misiones-completadas) Actualizamos dos misiones completadas al momento
+##| ##* cc55aaf Agregamos el archivo de las misiones completadas
+##|/
+##* acea380 Actualización de las misiones
+##* 31efae8 Retomando el trabajo que guarde en el stash
+##* 8239e26 Cambios de emergencia en el README
+##* 7dd23f1 Agregamos más misiones
+##* 5b0c87f Modificaciones en el README de emergencia
+##*   5440fe5 (tag: v1.0.0) Resolviendo conflictos
+##|\
+##| ##* 52c9666 Modificamos las misiones
+##* ##| b936625 Actualizamos las misiones MASTER
+##|/
+##*   a4a9834 Merge branch 'rama-villano'
+##|\
+##| ##* b3e02bc Agregamos a doomsday
+##* ##| 4c24baa Borre a los heroes que no son de DC
+##|/
+##* ad66a33 Agregamos al flash reverso
+##* df6ed62 Agregando villanos
+##* 62c8a10 Agregando el gitignore
+##* ac0d374 Borramos la historia de batman
+##* b4c748c Cambiamos el nombre de la historia de superman
+##* d877f01 Borrando archivo salvar mundo
+##* c9ee153 Renombrando archivo a salvar-mundo
+##* fa3cd3a Creando el archivo destruir el mundo
+##* 4e809d4 Agregamos a Linterna verde y a Robin
+##* 345d7de (tag: v0.1.0) Editamos el readme.md
+##* 860c6c2 Agregamos las historias de los heroes
+##* bc1a1e5 Agregamos las ciudades
+##* 6b8f60d Agregamos los heroes
+##* da24862 Agregamos las misiones
+##* 88a423d Se agrego el archivo readme
+
+
+##*mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-08 (master)
+git branch
+##* master
+##*  rama-misiones-completadas
+git checkout rama-misiones-completadas
+##*Switched to branch 'rama-misiones-completadas'
+git rebase master
+##First, rewinding head to replay your work on top of it...
+##Applying: Agregamos el archivo de las misiones completadas
+##Applying: Actualizamos dos misiones completadas al momento
+
+git lg
+##* 162418d (HEAD -> rama-misiones-completadas) Actualizamos dos misiones completadas al momento
+##* d4ee255 Agregamos el archivo de las misiones completadas
+##* 158ba9e (master) Se agrego a la liga: Volcán Negro
+##* 300c014 Misiones nuevas agregadas
+##* acea380 Actualización de las misiones
+##* 31efae8 Retomando el trabajo que guarde en el stash
+##* 8239e26 Cambios de emergencia en el README
+##* 7dd23f1 Agregamos más misiones
+##* 5b0c87f Modificaciones en el README de emergencia
+##*   5440fe5 (tag: v1.0.0) Resolviendo conflictos
+##|\
+##| ##* 52c9666 Modificamos las misiones
+##* ##| b936625 Actualizamos las misiones MASTER
+##|/
+##*   a4a9834 Merge branch 'rama-villano'
+##|\
+##| ##* b3e02bc Agregamos a doomsday
+##* ##| 4c24baa Borre a los heroes que no son de DC
+##|/
+##* ad66a33 Agregamos al flash reverso
+##* df6ed62 Agregando villanos
+##* 62c8a10 Agregando el gitignore
+##* ac0d374 Borramos la historia de batman
+##* b4c748c Cambiamos el nombre de la historia de superman
+##* d877f01 Borrando archivo salvar mundo
+##* c9ee153 Renombrando archivo a salvar-mundo
+##* fa3cd3a Creando el archivo destruir el mundo
+##* 4e809d4 Agregamos a Linterna verde y a Robin
+##* 345d7de (tag: v0.1.0) Editamos el readme.md
+##* 860c6c2 Agregamos las historias de los heroes
+##* bc1a1e5 Agregamos las ciudades
+##* 6b8f60d Agregamos los heroes
+##* da24862 Agregamos las misiones
+##* 88a423d Se agrego el archivo readme
+git checkout master 
+
+##Updating 158ba9e..162418d
+##Fast-forward
+## misiones-completadas.md | 4 ++++
+## 1 file changed, 4 insertions(+)
+## create mode 100644 misiones-completadas.md
+
+git lg
+
+##* 162418d (HEAD -> master, rama-misiones-completadas) Actualizamos dos misiones completadas al momento
+##* d4ee255 Agregamos el archivo de las misiones completadas
+##* 158ba9e Se agrego a la liga: Volcán Negro
+##* 300c014 Misiones nuevas agregadas
+##* acea380 Actualización de las misiones
+##* 31efae8 Retomando el trabajo que guarde en el stash
+##* 8239e26 Cambios de emergencia en el README
+##* 7dd23f1 Agregamos más misiones
+##* 5b0c87f Modificaciones en el README de emergencia
+##*   5440fe5 (tag: v1.0.0) Resolviendo conflictos
+##|\
+##| ##* 52c9666 Modificamos las misiones
+##* ##| b936625 Actualizamos las misiones MASTER
+##|/
+##*   a4a9834 Merge branch 'rama-villano'
+##|\
+##| ##* b3e02bc Agregamos a doomsday
+##* ##| 4c24baa Borre a los heroes que no son de DC
+##|/
+##* ad66a33 Agregamos al flash reverso
+##* df6ed62 Agregando villanos
+##* 62c8a10 Agregando el gitignore
+##* ac0d374 Borramos la historia de batman
+##* b4c748c Cambiamos el nombre de la historia de superman
+##* d877f01 Borrando archivo salvar mundo
+##* c9ee153 Renombrando archivo a salvar-mundo
+##* fa3cd3a Creando el archivo destruir el mundo
+##* 4e809d4 Agregamos a Linterna verde y a Robin
+##* 345d7de (tag: v0.1.0) Editamos el readme.md
+##* 860c6c2 Agregamos las historias de los heroes
+##* bc1a1e5 Agregamos las ciudades
+##* 6b8f60d Agregamos los heroes
+##* da24862 Agregamos las misiones
+##* 88a423d Se agrego el archivo readme
+
+
+# Borramos La rama
+git branch -d rama-misiones-completadas
+
+
+#############Rebase#############-------Rebase---squash-----Rebase-----------squash--------squash-------squash----squash---
+#Nuevo ejemplo sobre demo-08
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-08 (master)
+git lg
+
+##* 162418d (HEAD -> master) Actualizamos dos misiones completadas al momento
+##* d4ee255 Agregamos el archivo de las misiones completadas
+##* 158ba9e Se agrego a la liga: Volcán Negro
+##* 300c014 Misiones nuevas agregadas
+##* acea380 Actualización de las misiones
+##* 31efae8 Retomando el trabajo que guarde en el stash
+##* 8239e26 Cambios de emergencia en el README
+##* 7dd23f1 Agregamos más misiones
+##* 5b0c87f Modificaciones en el README de emergencia
+##*   5440fe5 (tag: v1.0.0) Resolviendo conflictos
+##|\
+##| ##* 52c9666 Modificamos las misiones
+##* ##| b936625 Actualizamos las misiones MASTER
+##|/
+##*   a4a9834 Merge branch 'rama-villano'
+##|\
+##| ##* b3e02bc Agregamos a doomsday
+##* ##| 4c24baa Borre a los heroes que no son de DC
+##|/
+##* ad66a33 Agregamos al flash reverso
+##* df6ed62 Agregando villanos
+##* 62c8a10 Agregando el gitignore
+##* ac0d374 Borramos la historia de batman
+##* b4c748c Cambiamos el nombre de la historia de superman
+##* d877f01 Borrando archivo salvar mundo
+##* c9ee153 Renombrando archivo a salvar-mundo
+##* fa3cd3a Creando el archivo destruir el mundo
+##* 4e809d4 Agregamos a Linterna verde y a Robin
+##* 345d7de (tag: v0.1.0) Editamos el readme.md
+##* 860c6c2 Agregamos las historias de los heroes
+##* bc1a1e5 Agregamos las ciudades
+##* 6b8f60d Agregamos los heroes
+##* da24862 Agregamos las misiones
+##* 88a423d Se agrego el archivo readme
+
+## Modificamos misiones-completadas.md
+git s
+## master
+# M misiones-completadas.md
+git commit -am "Actualizamos Misiones Completadas"
+##Los dos commits siguientes pudieron ser uno solo procedamos a unirlos 
+git lg
+#-->>>>>>>>>>* e343ebf (HEAD -> master) Actualizamos Misiones Completadas
+#-->>>>>>>>>>>* 162418d Actualizamos dos misiones completadas al momento
+#* d4ee255 Agregamos el archivo de las misiones completadas
+#* 158ba9e Se agrego a la liga: Volcán Negro
+#* 300c014 Misiones nuevas agregadas
+#* acea380 Actualización de las misiones
+#* 31efae8 Retomando el trabajo que guarde en el stash
+#* 8239e26 Cambios de emergencia en el README
+
+#....................... HEAD~4 tomar los ultimos 4 Commit
+git rebase -i HEAD~4
+
+pick 158ba9e Se agrego a la liga: Volcán Negro
+pick d4ee255 Agregamos el archivo de las misiones completadas
+pick 162418d Actualizamos dos misiones completadas al momento
+pick e343ebf Actualizamos Misiones Completadas
+
+
+##Editamos
+
+pick 158ba9e Se agrego a la liga: Volcán Negro
+pick d4ee255 Agregamos el archivo de las misiones completadas
+pick 162418d Actualizamos dos misiones completadas al momento
+squash e343ebf Actualizamos Misiones Completadas
+
+
+## En el ej anterior fusionamos 162418d e343ebf Salimi esc shif : wq 
+##Actualizamos el mensage del Commit
+
+
+git lg
+#*-->>>>>>>> 5ae2c3d (HEAD -> master) Actualizamos  la informacion de las misiones completadas
+#* d4ee255 Agregamos el archivo de las misiones completadas
+#* 158ba9e Se agrego a la liga: Volcán Negro
+#* 300c014 Misiones nuevas agregadas
+#* acea380 Actualización de las misiones
+#* 31efae8 Retomando el trabajo que guarde en el stash
+#* 8239e26 Cambios de emergencia en el README
+
+
+#############Rebase##########reword###-------Rebase---reword-----Rebase-----------reword--------reword-------reword----reword---
+#Nuevo ejemplo sobre demo-08
+git lg
+#* 5ae2c3d (HEAD -> master) Actualizamos  la informacion de las misiones completadas
+#..............
+# Modificar el mensaje 
+git rebase -i HEAD~1
+pick 5ae2c3d Actualizamos  la informacion de las misiones completadas
+##EDITAMOS
+r 5ae2c3d Actualizamos  la informacion de las misiones completadas
+#Guardamos esc shif : wq 
+##Editamos la info Update: Misiones completadas esc shif : wq 
+git lg
+* e9cd609 (HEAD -> master) Update: Misiones completadas
+
+#############Rebase##########edit###-------Rebase---edit-----Rebase-----------edit--------edit-------edit----edit---
+#Nuevo ejemplo sobre demo-08 
+git s
+## master
+## M README.md
+## M misiones.md
+## M villanos.md
+git checkout -- misiones.md
+git s
+## master
+##  M README.md
+##  M villanos.md
+git commit -am "Comitts"
+
+
+########## Separar este COMIIT en 2 commit por archiivo
+
+git rebase -i HEAD~2
+pick e9cd609 Update: Misiones completadas
+pick c5c32b8 Comitts
+##EDITAMOS
+pick e9cd609 Update: Misiones completadas
+edit c5c32b8 Comitts
+
+
+##Stopped at c5c32b8...  Comitts
+#You can amend the commit now, with
+
+ # git commit --amend
+
+#Once you are satisfied with your changes, run
+
+ # git rebase --continue
+
+git reset HEAD^ 
+
+git s
+## HEAD (no branch)
+## M README.md
+## M villanos.md
+
+git add README.md
+git commit -m "Actualizaciones README"
+git s
+git commit -am "Actualizamos villanos"
+git s
+## HEAD (no branch)
+git rebase --continue
+
+
+
+-------------------------------------------------GItHUb 
+
+GitHub Plata forma de desarrollo colaborativo para alojar proyectos
+Remote Push Tomar nuestro repositorio y subirlo al servidor
+Remote Pull Obtener cambios desde el servidor 
+
+Crear una Cuenta en GitHub 
+
+Creasmos un Repositorio en este caso pruebasGit
+
+Buscamos la siguiente informacion 
+
+…or push an existing repository from the command line
+###git remote add origin https://github.com/marioacp1981/pruebasGit.git
+###git push -u origin master
+
+#################################################
+
+## tenemos un proyecto ya realizado Commit demo-09.zip OJOOOOOOOOOOOOOOOOOO 
+git remote add origin https://github.com/marioacp1981/pruebasGit.git
+git push -u origin master
+## Si no te as logueado pide usuario y pass
+## Recargamos el Navegador
+
+############_____________________Puch TAGS
+## Creamos los git tag que ya se crearon a lo largo de la guia 
+git push --tags
+
+
+
+############_____________________PULL
+
+########Modificamos archivo readme desde github 
+
+#desde nuestra terminal
+mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-09 (master)
+git remote -v
+#origin  https://github.com/marioacp1981/pruebasGit.git (fetch)
+#origin  https://github.com/marioacp1981/pruebasGit.git (push)
+##Descargamos
+git pull
+
+##Clonar Un repositorio
+## Vamos a GH Copiamos la url desde Clone or download 
+
+git clone https://github.com/marioacp1981/pruebasGit.git
+## Crear una caroeta 
+git clone https://github.com/marioacp1981/pruebasGit.git demo-10
+
+#---------------------------------------------------------------FETCH PULL
+
+#En el archivo de GIT HUB modificamos archivos heroes.md demo-10
+
+##En nuestro repositorio local modificamos README.md
+
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-10 (master)
+git s
+## master...ori
+git commit -am "Commit Local Modificanfo README"
+## al hacer un puch vemos que exiisten conflictos 
+git push
+#To https://github.com/marioacp1981/pruebasGit.git
+# ! [rejected]        master -> master (fetch first)
+#error: failed to push some refs to 'https://github.com/marioacp1981/pruebasGit.git'
+#hint: Updates were rejected because the remote contains work that you do
+#hint: not have locally. This is usually caused by another repository pushing
+#hint: to the same ref. You may want to first integrate the remote changes
+#hint: (e.g., 'git pull ...') before pushing again.
+#hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+
+##fetch obtenemos los cambios del repositorio GitHub pero a diferencia del pull este no realiza merge automaticamente
+git fetch
+## hacemos pull si existen conflictos los resolvemos
+git pull
+git push
+
+
+#En GitHub creamos un nuevo archi creamos un pull requeest para autorizar el cambio hay varios videos de como hacerlo
+##Realizamos comentarios de pruebas realizamos un commit y borrar branch creado
+
+#Para crear el pull request desde github antes de hacer el commit chequeamps la OP de 
+ #######Create a new branch for this commit and start a pull request
+ #######Le damos un titulo
+ #######Propone new file
+##lo descargamos
+git pull
+##Tambien se pude subir archivos en la interfas sin nesecidad de pull requeest solo presionando commint new file
+git pull
+
+
+
+##Para este ej desde github Modificamos el nombre de un archivo y luego lo eliminamos
+git fetch
+git status
+##############Nos dice que estamos dos commits atras
+#On branch master
+#Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+  #(use "git pull" to update your local branch)
+git pull
+#Updating 6bef33a..f285915
+#Fast-forward
+# historia/flash.md | 1 -
+# 1 file changed, 1 deletion(-)
+# delete mode 100644 historia/flash.md
+
+
+################NO es buena practica modificar archivos directamente en github
+
+
+
+################ Forh CLONE y Colaboraciones ###################################################
+
+
+En GItHUbCreamos un CLon buscamos un proyecto para este EJ
+https://github.com/klerith/legion-del-mal
+Precionamos el boton Fork
+https://github.com/marioacp1981/legion-del-mal
+Quedaria en mis repositorios en el cual lo podemos clonar
+
+
+git clone https://github.com/marioacp1981/legion-del-mal.git demo--11
+
+#Editamos un archivo
+git s
+### master...origin/master
+# M miembros.md
+git commit -am "Borramos Espandapajaros"
+git push
+
+
+##########################Pull Request ########Pull Request  ########Pull Request  ########Pull Request  ########Pull Request 
+
+git remote -v
+#origin  https://github.com/marioacp1981/legion-del-mal.git (fetch)
+#origin  https://github.com/marioacp1981/legion-del-mal.git (push)
+
+##Ceamos un archico en la carpeta aspirantes/marioacp1981.md 
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo--11 (master)
+git add .
+
+##mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo--11 (master)
+git commit -m "Solicitud de marioacp"
+git push
+
+##ahora en https://github.com/marioacp1981/legion-del-mal Solicitamos un New pull request
+
+##Si en la revision del pull reques nos dicen no eliminar espantapajaros
+
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo--11 (master)
+git lg
+#* c1c008b (HEAD -> master, origin/master, origin/HEAD) Solicitud de marioacp
+#-->>>>>>>>>>>>>>>>>>>>>>>   * adc178b Borramos Espandapajaros
+#* 392d44f Set theme jekyll-theme-cayman
+#* bd15f5c Update README.md
+#* c4a3f50 Update README.md (#2)
+#* 7a16b8a Solicitud de StriderX2 para la legion (#1)
+#* -->>>>>>>>>>>>>>>><<da1b631 Creamos lista de miembros inicial
+#* b3088de Actualizamos el Readme
+#* 2a8b925 Initial commit
+
+git checkout da1b631 miembros.md
+git commit -am "Retornamos a Espandapajaros"
+
+##Si vamos a github este cambio se refleja en el mimo pull request
+
+
+###-----Actualizando nuestro Fork
+###-----Actualizando nuestro Fork
+###-----Actualizando nuestro Fork
+## Si tenemos varias personas trabajando con diferente Fork Fork Fork Fork
+###-----Actualizando nuestro Fork la sigu url es el repositrio original del proyecto al cual no tengo acceso de modificacion
+##Con el siguiente comando verifico si hay cambios 
+
+git remote add upstream https://github.com/Klerith/legion-del-mal.git
+
+git remote -v
+#origin  https://github.com/marioacp1981/legion-del-mal.git (fetch)
+#origin  https://github.com/marioacp1981/legion-del-mal.git (push)
+#upstream        https://github.com/Klerith/legion-del-mal.git (fetch) -->>>> Si podriasmo
+#upstream        https://github.com/Klerith/legion-del-mal.git (push) -->>>> No podrieamos 
+
+git pull upstream master 
+
+##Damos nombtre al commit  eqsc : wq 
+
+git push 
+
+
+#######################Flujos de TRABAJO
+
+Descargar 
+
+https://github.com/Klerith/avengers
+
+y Creamos un nuevo repositorio en github avengers
+
+git init
+git commit -m "Commit Inicial"
+
+##Creamos un Archivo $  villanos.md
+git s
+## master...origin/master
+##?? villanos.md
+##Creamos una nueba rama rama-villanos y os movemos a ella 
+git checkout -b rama-villanos
+git s
+## rama-villanos
+## ?? villanos.md
+git add .
+git commit -m "Archivo Villanos"
+
+#Regresamos a master
+git checkout master
+# el archivo no existe en esta rama 
+ls
+#miembros.md  README.md
+
+git checkout rama-villanos
+
+##Subimos la rama a github
+git push origin rama-villanos
+
+
+##EN GItHUb Realizamos un pull request
+
+##Pestaña Pull Request --> New Pull Request --> Seleccionamos Rama Master y rama-villanos  --> Create Pull Request --> Creamos un comentario --> Create pull request
+
+##Ya el admin --->>>>>>
+
+##Realiza Merge Pull Request --> Confirmamos -->Borramos rama
+
+## En nuestro equipo local
+git branch -v
+##  master        790be12 Commit Inicial
+## rama-villanos d66415a Archivo Villanos
+
+git checkout master
+git branch -d rama-villanos
+##Genero un errror 
+##error: The branch 'rama-villanos' is not fully merged.
+##If you are sure you want to delete it, run 'git branch -D rama-villanos'.
+##Lo hacemos D mayuscula
+git branch -D rama-villanos
+git pull
+
+
+## El ejemplo anterior se supone que fueron trabajos con compañeros diferentes simulando trabajo con ramas diferente 
+
+##Simulemos otra rama desde github OJO lo ideal es q el comapañero lo haga localmente 
+## Creamos un archivo misiones.md en esta rama nueva 
+
+### En nuestro equipo
+
+## En algunas ocacionoes se requeire git pull all
+git pull
+
+git branch
+#* master
+
+##No apaece la rama
+
+git branch -a
+#* master
+#  remotes/origin/master
+#  remotes/origin/rama-misiones
+#  remotes/origin/rama-villanos
+git checkout rama-misiones
+#Switched to a new branch 'rama-misiones'
+#Branch 'rama-misiones' set up to track remote branch 'rama-misiones' from 'origin'.
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-12 (rama-misiones)
+#$
+git s
+## rama-misiones...origin/rama-misiones
+
+## Para esta prueba en nuestro repositorio local modificamos misiones.md
+git s
+## rama-misiones...origin/rama-misiones
+## M misiones.md
+git commit -am "Modificacion actualizacion misiones"
+git push origin rama-misiones
+
+## Ya en GitHub 
+## Hacemos el pull request --> create pull requeest --> merge --> con lo anterior dejamos OK el master
+git branch -a
+##   master
+## * rama-misiones
+##   remotes/origin/master
+##   remotes/origin/rama-misiones
+ ##  remotes/origin/rama-villanos
+ 
+ git checkout master 
+ git branch -D rama-misiones
+
+
+## Ahira solo vemos las remotas procdamos a eliminarlas 
+ git branch -a
+##* master
+##  remotes/origin/master
+##  remotes/origin/rama-misiones
+##  remotes/origin/rama-villanos
+
+git push origin :rama-misiones
+
+
+git push origin :rama-villanos
+##error: unable to delete 'rama-villanos': remote ref does not exist
+##error: failed to push some refs to 'https://github.com/marioacp1981/avengers.git'
+##Da un erro por q la rama fue eliminada en github
+##Para eliminar ejecutamos
+git remote prune origin
+
+##git branch -a
+##* master
+ ## remotes/origin/master
+
+
+##############/////
+##-------------------------------------------Crear y subir TAGS
+## los tags se suben cada bes que se hace un push a produccion
+
+
+git tag -a v1.0.0 -m "V 1 lista"
+git tag
+#v1.0.0
+
+
+git lg
+#*   b72ccf6 (HEAD -> master, tag: v1.0.0, origin/master) Merge pull request #2 from marioacp1981/rama-misiones
+#|\
+#| * 2796c09 Modificacion actualizacion misiones
+#| * dff1baf Creando archivos de misiones
+#|/
+#*   94abc7c Merge pull request #1 from marioacp1981/rama-villanos
+#|\
+#| * d66415a Archivo Villanos
+#|/
+#* 790be12 Commit Inicial
+
+git tag -a v0.0.1 790be12 -m "Version Alfa No usar"
+
+#mario@LAPTOP-EPAEUJMG MINGW64 /c/wamp/www/git/demo-12 (master)
+git tag
+#v0.0.1
+#v1.0.0
+git tag -a v0.0.2 94abc7c 
+##Creamis un mensaje en el editor
+git push --tags 
+
+
+
+
+######RAMA DE PRODUCCION-----------------------------------------------------------------------------------
+
+##Realizamos cambios a archivos
+git s
+## master...origin/master
+## M miembros.md
+## M villanos.md
+git checkout -b rama-capitan-loco
+git commit -am "Capitan Malo"
+git push origin rama-capitan-loco
+
+git tag v1.0.1 -m "Arreglo en Caliente"
+git push --tag
+##Modifico nuevamente los archivos
+git s
+## rama-capitan-loco
+##  M miembros.md
+## M villanos.md
+git commit -am "Nuevo cambi  capitan loco"
+
+
+## En github realizamos el pull  request
+
+##Ahoira borramos las ramas
+git branch -a
+#  master
+#* rama-capitan-loco
+#  remotes/origin/master
+#  remotes/origin/rama-capitan-loco#
+git checkout master
+git branch -D rama-capitan-loco
+git push origin :rama-capitan-loco
+
+######RELEASE ------------------------------------------------######RELEASE ------------------------------------------------
+######RELEASE VS TAGS-----------------------------------------------------------------------------------
+
+release --> Permite compartir archivos binarios sin que git o github los verifique
+			Se puede colocar opciones o comentarios adicionales 
+			
+			Seleccionamos el TAG --> Create Release
+			
+
+######RELEASE ------------------------------------------------######RELEASE ------------------------------------------------			
+
+
